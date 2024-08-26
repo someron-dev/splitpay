@@ -1,0 +1,9 @@
+:3000 {
+    @pb {
+        path /_/* /api/*
+    }
+
+    reverse_proxy @pb localhost:8090
+
+    reverse_proxy localhost:5173
+}

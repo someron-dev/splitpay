@@ -16,6 +16,7 @@
                 bashInteractive
                 pocketbase
                 nodejs
+                caddy
             ];
         };
       }

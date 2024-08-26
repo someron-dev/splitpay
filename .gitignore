@@ -1,6 +1,8 @@
 /.direnv
+.env.local
 
 /.idea
 *.iml
 
 /pb_data
+admin.txt
