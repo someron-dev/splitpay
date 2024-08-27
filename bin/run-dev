@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-cd $DIRENV_DIR
+cd "${DIRENV_DIR:1}" || exit
 
 # Start the PocketBase server and Caddy
 pocketbase serve --dev --http :8090 &
 PB_PID=$!
 
-caddy run --config ./Caddyfile &
+caddy run --config "${DIRENV_DIR:1}/Caddyfile" &
 CADDY_PID=$!
 
 trap "kill $PB_PID $CADDY_PID" SIGINT SIGTERM EXIT
 
 # Start the frontend
-cd frontend
+cd frontend || exit
 vite dev --port 5173 --strictPort --clearScreen false
