@@ -14,3 +14,12 @@ export function getCurrentUser() {
 export function isLoggedIn() {
     return pb.authStore.isValid;
 }
+
+export function login(credentials: BasicCredentials) {
+    alert('Login -> ' + JSON.stringify(credentials));
+}
+
+type BasicCredentials = {
+    email: string;
+    password: string;
+};
