@@ -19,6 +19,10 @@ export function login(credentials: BasicCredentials) {
     return pb.collection("users").authWithPassword(credentials.email, credentials.password);
 }
 
+export function logout() {
+    pb.authStore.clear();
+}
+
 type BasicCredentials = {
     email: string;
     password: string;
