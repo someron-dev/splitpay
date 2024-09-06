@@ -1,6 +1,6 @@
 <script lang="ts">
     import "@picocss/pico/css/pico.css";
-    import { logout } from "$lib/authentication";
+    import { logout } from "$lib/pocketbase/authentication";
     import { goto } from "$app/navigation";
 
     function signOut() {

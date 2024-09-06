@@ -5,6 +5,7 @@
 
 <script lang="ts">
     import { getCurrentUser } from "$lib/authentication";
+    import ExpenseFeed from "$lib/components/ExpenseFeed.svelte";
 
     let model = getCurrentUser();
     const user = model == null ? "" : model.name;

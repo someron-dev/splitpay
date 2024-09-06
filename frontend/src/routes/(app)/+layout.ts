@@ -1,4 +1,4 @@
-import { isLoggedIn } from "$lib/authentication";
+import { isLoggedIn } from "$lib/pocketbase/authentication";
 import { redirect } from "@sveltejs/kit";
 
 export async function load() {

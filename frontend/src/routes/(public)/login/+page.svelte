@@ -42,7 +42,7 @@
 </div>
 
 <script lang="ts">
-    import { login } from "$lib/authentication";
+    import { login } from "$lib/pocketbase/authentication";
     import { isEmpty, isEmail } from "validator";
     import { goto } from "$app/navigation";
     import type {ClientResponseError} from "pocketbase";
