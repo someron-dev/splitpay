@@ -1,5 +1,6 @@
-import { pb } from "$lib/pocketbase";
+import { pb, type User } from "$lib/pocketbase";
 import { goto } from "$app/navigation";
+import type { RecordAuthResponse } from "pocketbase";
 
 export async function ensureAuthentication() {
     if (!pb.authStore.isValid) {
@@ -15,7 +16,7 @@ export function isLoggedIn() {
     return pb.authStore.isValid;
 }
 
-export function login(credentials: BasicCredentials) {
+export function login(credentials: BasicCredentials): Promise<RecordAuthResponse<User>> {
     return pb.collection("users").authWithPassword(credentials.email, credentials.password);
 }
 
