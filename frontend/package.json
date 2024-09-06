@@ -17,6 +17,7 @@
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@types/eslint": "^9.6.0",
+		"@types/validator": "^13.12.1",
 		"eslint": "^9.0.0",
 		"eslint-plugin-svelte": "^2.36.0",
 		"globals": "^15.0.0",
@@ -28,6 +29,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"pocketbase": "^0.21.4"
+		"pocketbase": "^0.21.4",
+		"validator": "^13.12.0"
 	}
 }

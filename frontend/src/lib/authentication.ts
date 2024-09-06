@@ -16,7 +16,7 @@ export function isLoggedIn() {
 }
 
 export function login(credentials: BasicCredentials) {
-    alert('Login -> ' + JSON.stringify(credentials));
+    return pb.collection("users").authWithPassword(credentials.email, credentials.password);
 }
 
 type BasicCredentials = {
