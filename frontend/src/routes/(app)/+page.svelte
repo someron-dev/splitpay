@@ -5,7 +5,7 @@
 
 <script lang="ts">
     import { getCurrentUser } from "$lib/pocketbase/authentication";
-    import ExpenseFeed from "$lib/components/ExpenseFeed.svelte";
+    import ExpenseFeed from "$lib/components/feed/ExpenseFeed.svelte";
 
     let model = getCurrentUser();
     const user = model == null ? "" : model.name;

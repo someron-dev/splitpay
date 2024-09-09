@@ -1,23 +1,4 @@
-<form on:submit|preventDefault={createExpense}>
-    <fieldset class="grid">
-        <input
-            type="text"
-            placeholder="Subject"
-            required
-            aria-label="Subject"
-            bind:value={newExpense.subject}
-        >
-        <input
-            type="number"
-            aria-valuemin="0"
-            placeholder="Amount"
-            required
-            aria-label="Subject"
-            bind:value={newExpense.amount}
-        >
-        <button type="submit">Create</button>
-    </fieldset>
-</form>
+<ExpenseCreator createExpense={createExpense} />
 
 <table>
     <thead>
@@ -55,6 +36,7 @@
 <script lang="ts">
     import { type Expense, pb } from "$lib/pocketbase";
     import type { MouseEventHandler } from "svelte/elements";
+    import ExpenseCreator from "$lib/components/feed/ExpenseCreator.svelte";
 
     export let expenses: Expense[] = [];
 
@@ -67,14 +49,12 @@
         };
     }
 
-    const newExpense = { subject: "", amount: 0 };
-
-    async function createExpense() {
+    async function createExpense(newExpense: { subject: string; amount: number; }) {
         const result = await pb.collection("expenses").create({
             ...newExpense,
             creator: pb.authStore.model!.id,
         }) as Expense;
-        expenses = [...expenses, result];
+        expenses = [result, ...expenses];
         newExpense.subject = "";
         newExpense.amount = 0;
     }
