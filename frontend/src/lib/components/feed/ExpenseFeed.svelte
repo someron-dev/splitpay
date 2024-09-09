@@ -6,6 +6,7 @@
         <th>Subject</th>
         <th>Amount</th>
         <th>Created by</th>
+        <th>Created at</th>
         <th />
     </tr>
     </thead>
@@ -15,6 +16,7 @@
             <td>{expense.subject}</td>
             <td>{expense.amount}</td>
             <td>{expense.creator}</td>
+            <td>{expense.created}</td>
             <td>
                 <div role="group">
                     <button class="pico-background-red" on:click={deleteExpense(expense.id)}>Delete</button>
@@ -28,6 +30,7 @@
         <th>Subject</th>
         <th>Amount</th>
         <th>Created by</th>
+        <th>Created at</th>
         <th />
     </tr>
     </tfoot>
