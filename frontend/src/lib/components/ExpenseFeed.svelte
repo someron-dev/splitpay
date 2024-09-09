@@ -1,3 +1,24 @@
+<form on:submit|preventDefault={createExpense}>
+    <fieldset class="grid">
+        <input
+            type="text"
+            placeholder="Subject"
+            required
+            aria-label="Subject"
+            bind:value={newExpense.subject}
+        >
+        <input
+            type="number"
+            aria-valuemin="0"
+            placeholder="Amount"
+            required
+            aria-label="Subject"
+            bind:value={newExpense.amount}
+        >
+        <button type="submit">Create</button>
+    </fieldset>
+</form>
+
 <table>
     <thead>
     <tr>
@@ -44,5 +65,17 @@
                     expenses = expenses.filter(expense => expense.id !== id);
                 }).catch(alert);
         };
+    }
+
+    const newExpense = { subject: "", amount: 0 };
+
+    async function createExpense() {
+        const result = await pb.collection("expenses").create({
+            ...newExpense,
+            creator: pb.authStore.model!.id,
+        }) as Expense;
+        expenses = [...expenses, result];
+        newExpense.subject = "";
+        newExpense.amount = 0;
     }
 </script>
