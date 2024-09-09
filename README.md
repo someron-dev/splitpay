@@ -7,3 +7,9 @@ Description is todo
 - [x] Expenses are listed in a feed
 - [x] Expenses can be removed from the feed
 - [x] Expenses can be added to the feed
+
+### Iteration 2
+- [ ] Humanized time-stamps
+- [ ] Amounts rendered in EUR
+- [ ] Expenses can be shared between two users
+- [ ] Sum of shared expenses is calculated
