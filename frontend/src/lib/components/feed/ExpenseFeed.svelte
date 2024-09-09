@@ -16,7 +16,7 @@
             <td>{expense.subject}</td>
             <td>{expense.amount}</td>
             <td>{expense.creator}</td>
-            <td>{expense.created}</td>
+            <td><Time timestamp={expense.created} relative live /></td>
             <td>
                 <div role="group">
                     <button class="pico-background-red" on:click={deleteExpense(expense.id)}>Delete</button>
@@ -37,9 +37,11 @@
 </table>
 
 <script lang="ts">
-    import { type Expense, pb } from "$lib/pocketbase";
     import type { MouseEventHandler } from "svelte/elements";
     import ExpenseCreator from "$lib/components/feed/ExpenseCreator.svelte";
+    import Time from "svelte-time/Time.svelte";
+
+    import { type Expense, pb } from "$lib/pocketbase";
 
     export let expenses: Expense[] = [];
 
