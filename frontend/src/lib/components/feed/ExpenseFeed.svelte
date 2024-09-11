@@ -14,7 +14,7 @@
     {#each expenses as expense}
         <tr>
             <td>{expense.subject}</td>
-            <td>{formatCurrency(dinero({ amount: expense.amount, currency: EUR }))}</td>
+            <td>{formatCurrency(dinero({ amount: expense.amount, currency: currency(expense.currency) }))}</td>
             <td>{expense.creator}</td>
             <td><Time timestamp={expense.created} relative live /></td>
             <td>
@@ -43,8 +43,7 @@
 
     import { type Expense, pb } from "$lib/pocketbase";
     import { dinero } from "dinero.js";
-    import { EUR } from "@dinero.js/currencies";
-    import { formatCurrency } from "$lib/currency";
+    import { currency, formatCurrency } from "$lib/currency";
 
     export let expenses: Expense[] = [];
 

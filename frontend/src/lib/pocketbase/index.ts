@@ -16,6 +16,7 @@ export type User = RecordModel & {
 
 export type Expense = RecordModel & {
     amount: number;
+    currency: string;
     subject: string;
     creator: string;
 };
