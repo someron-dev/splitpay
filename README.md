@@ -10,6 +10,6 @@ Description is todo
 
 ### Iteration 2
 - [x] Humanized time-stamps
-- [ ] Amounts rendered in EUR
+- [ ] Amounts rendered in custom currencies
 - [ ] Expenses can be shared between two users
 - [ ] Sum of shared expenses is calculated
