@@ -11,9 +11,38 @@
 </script>
 
 <header>
-    <button on:click={signOut}>Logout</button>
+    <nav class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+        </ul>
+
+        <ul>
+            <li><strong>splitpay</strong></li>
+        </ul>
+
+        <ul>
+            <li>
+                <details class="dropdown">
+                    <summary role="link">
+                        Account
+                    </summary>
+                    <ul dir="rtl">
+                        <li><a href="/settings">Settings</a></li>
+                        <li><a href="#logout" on:click={signOut}>Logout</a></li>
+                    </ul>
+                </details>
+            </li>
+        </ul>
+    </nav>
 </header>
 <main class="container">
     <slot />
 </main>
 <footer></footer>
+
+<style>
+    .navbar {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+</style>
