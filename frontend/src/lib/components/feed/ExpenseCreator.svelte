@@ -41,12 +41,15 @@
     import "$lib/style/utils.css";
     import { isEmpty } from "validator";
     import { currency, currencyBase, currencyCodes } from "$lib/currency";
-    import type {Currency} from "dinero.js";
+    import type { Currency } from "dinero.js";
+    import {getCurrentUser} from "$lib/pocketbase/authentication";
+    import type {User} from "$lib/pocketbase";
 
     type ExpenseCreator = (data: {
         subject: string;
         amount: number;
         currency: string;
+        sharedBy: string[];
     }) => void;
 
     const newExpense = {
@@ -64,15 +67,14 @@
         errors.subject = (isEmpty(newExpense.subject) || newExpense.subject === "Hello") ? "Subject is required" : undefined;
         errors.amount = (newExpense.amount <= 0) ? "Amount must be greater than 0" : undefined;
 
-        console.log(JSON.stringify(newExpense))
-
         if (!errors.subject && !errors.amount && newExpense.currency !== null) {
             const singleUnit = Math.pow(currencyBase(newExpense.currency), newExpense.currency.exponent);
 
             createExpense({
                 subject: newExpense.subject,
                 amount: singleUnit * newExpense.amount,
-                currency: newExpense.currency?.code
+                currency: newExpense.currency?.code,
+                sharedBy: [ getCurrentUser()!.id, user.id ].sort() // should be sorted to allow for SQL grouping
             });
 
             newExpense.subject = "";
@@ -82,4 +84,6 @@
     }
 
     export let createExpense: ExpenseCreator;
+
+    export let user: User;
 </script>

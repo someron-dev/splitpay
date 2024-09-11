@@ -11,5 +11,5 @@ Description is todo
 ### Iteration 2
 - [x] Humanized time-stamps
 - [x] Amounts rendered in custom currencies
-- [ ] Expenses can be shared between two users
+- [x] Expenses can be shared between two users
 - [ ] Sum of shared expenses is calculated

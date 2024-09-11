@@ -1,10 +1,11 @@
-import { type Expense, pb } from "$lib/pocketbase";
+import { pb, type User } from "$lib/pocketbase";
+import { getCurrentUser } from "$lib/pocketbase/authentication";
 
-export async function load() {
-    const expenses = await pb.collection("expenses")
-        .getFullList({ sort: '-created' }) as Expense[];
+export async function load({ params }) {
+    const users = await pb.collection("users")
+        .getFullList({ filter: `(id != '${getCurrentUser()!.id}')` }) as User[];
 
     return {
-        expenses
+        users,
     };
 }
