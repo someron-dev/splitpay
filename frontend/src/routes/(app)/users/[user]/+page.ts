@@ -1,5 +1,7 @@
 import { type Expense, pb, type User } from "$lib/pocketbase";
 import { getCurrentUser } from "$lib/pocketbase/authentication";
+import { add, type Dinero, dinero, multiply } from "dinero.js";
+import { currency } from "$lib/currency";
 
 export async function load({ params }) {
     const expenses = await pb.collection("expenses")
@@ -10,8 +12,21 @@ export async function load({ params }) {
 
     const user = await pb.collection("users").getOne(params.user) as User;
 
+    const totals: { [key: string]: Dinero<number> } = {};
+
+    expenses.forEach(expense => {
+        const amount = multiply(
+            dinero({ amount: expense.amount, currency: currency(expense.currency) }),
+            expense.creator === user.id ? -1 : 1
+        );
+
+        if(expense.currency in totals) totals[expense.currency] = add(totals[expense.currency], amount);
+        else totals[expense.currency] = amount;
+    });
+
     return {
         expenses,
-        user
+        user,
+        totals: Object.entries(totals)
     };
 }

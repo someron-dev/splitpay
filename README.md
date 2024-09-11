@@ -12,4 +12,4 @@ Description is todo
 - [x] Humanized time-stamps
 - [x] Amounts rendered in custom currencies
 - [x] Expenses can be shared between two users
-- [ ] Sum of shared expenses is calculated
+- [x] Sum of shared expenses is calculated
