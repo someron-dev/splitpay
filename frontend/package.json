@@ -29,7 +29,9 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@dinero.js/currencies": "^2.0.0-alpha.14",
 		"dayjs": "^1.11.13",
+		"dinero.js": "^2.0.0-alpha.14",
 		"pocketbase": "^0.21.4",
 		"svelte-time": "^0.9.0",
 		"validator": "^13.12.0"
