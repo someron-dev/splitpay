@@ -15,6 +15,6 @@ Description is todo
 - [x] Sum of shared expenses is calculated
 
 ### Iteration 3
-- [ ] Expenses are split between marked users
+- [x] Expenses are split between marked users
 - [x] Access control for API operations
 - [ ] Settings GUI for account

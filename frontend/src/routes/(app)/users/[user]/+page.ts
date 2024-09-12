@@ -1,6 +1,6 @@
 import { type Expense, pb, type User } from "$lib/pocketbase";
 import { getCurrentUser } from "$lib/pocketbase/authentication";
-import { add, type Dinero, dinero, multiply } from "dinero.js";
+import { add, type Dinero, dinero, multiply, allocate } from "dinero.js";
 import { currency } from "$lib/currency";
 
 export async function load({ params }) {
@@ -16,7 +16,10 @@ export async function load({ params }) {
 
     expenses.forEach(expense => {
         const amount = multiply(
-            dinero({ amount: expense.amount, currency: currency(expense.currency) }),
+            allocate(
+                dinero({ amount: expense.amount, currency: currency(expense.currency) }),
+                [1, expense.sharedBy.length - 1]
+            )[0],
             expense.creator === user.id ? -1 : 1
         );
 

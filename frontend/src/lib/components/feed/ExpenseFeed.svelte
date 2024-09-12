@@ -14,8 +14,10 @@
     {#each expenses as expense}
         <tr>
             <td>{expense.subject}</td>
-            <td>{formatCurrency(dinero({ amount: expense.amount, currency: currency(expense.currency) }))}</td>
-            <td>{expense.creator}</td>
+            <td>{formatCurrency(
+                allocate(dinero({ amount: expense.amount, currency: currency(expense.currency) }), [1, expense.sharedBy.length - 1])[0]
+            )}</td>
+            <td>{expense.creator === user.id ? user.name : "You"}</td>
             <td><Time timestamp={expense.created} relative live /></td>
             <td>
                 <div role="group">
@@ -42,7 +44,7 @@
     import Time from "svelte-time/Time.svelte";
 
     import { type Expense, pb, type User } from "$lib/pocketbase";
-    import { dinero } from "dinero.js";
+    import { dinero, allocate } from "dinero.js";
     import { currency, formatCurrency } from "$lib/currency";
 
     export let expenses: Expense[] = [];

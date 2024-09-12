@@ -19,4 +19,5 @@ export type Expense = RecordModel & {
     currency: string;
     subject: string;
     creator: string;
+    sharedBy: string[];
 };
