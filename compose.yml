@@ -1,0 +1,9 @@
+services:
+  splitpay_amd64:
+    image: ghcr.io/someron-dev/splitpay:amd64
+    build: .
+    platform: amd64
+  splitpay_arm64:
+    image: ghcr.io/someron-dev/splitpay:arm64
+    build: .
+    platform: arm64
