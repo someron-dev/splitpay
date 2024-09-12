@@ -16,5 +16,5 @@ Description is todo
 
 ### Iteration 3
 - [ ] Expenses are split between marked users
-- [ ] Access control for API operations
+- [x] Access control for API operations
 - [ ] Settings GUI for account
