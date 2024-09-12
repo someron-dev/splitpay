@@ -1,4 +1,4 @@
-import { type Expense, pb, type User } from "$lib/pocketbase";
+import { type Expense, type OtherUser, pb } from "$lib/pocketbase";
 import { getCurrentUser } from "$lib/pocketbase/authentication";
 import { add, type Dinero, dinero, multiply, allocate } from "dinero.js";
 import { currency } from "$lib/currency";
@@ -10,7 +10,7 @@ export async function load({ params }) {
             filter: `(sharedBy ~ '${params.user}' && sharedBy ~ '${getCurrentUser()!.id}')`
         }) as Expense[];
 
-    const user = await pb.collection("users").getOne(params.user) as User;
+    const user = await pb.collection("other_users").getOne(params.user) as OtherUser;
 
     const totals: { [key: string]: Dinero<number> } = {};
 

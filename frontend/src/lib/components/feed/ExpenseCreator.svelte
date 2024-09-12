@@ -42,8 +42,8 @@
     import { isEmpty } from "validator";
     import { currency, currencyBase, currencyCodes } from "$lib/currency";
     import type { Currency } from "dinero.js";
-    import {getCurrentUser} from "$lib/pocketbase/authentication";
-    import type {User} from "$lib/pocketbase";
+    import { getCurrentUser } from "$lib/pocketbase/authentication";
+    import type { OtherUser } from "$lib/pocketbase";
 
     type ExpenseCreator = (data: {
         subject: string;
@@ -85,5 +85,5 @@
 
     export let createExpense: ExpenseCreator;
 
-    export let user: User;
+    export let user: OtherUser;
 </script>

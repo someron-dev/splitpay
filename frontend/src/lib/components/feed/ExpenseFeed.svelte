@@ -43,13 +43,13 @@
     import ExpenseCreator from "$lib/components/feed/ExpenseCreator.svelte";
     import Time from "svelte-time/Time.svelte";
 
-    import { type Expense, pb, type User } from "$lib/pocketbase";
+    import { type Expense, pb, type OtherUser } from "$lib/pocketbase";
     import { dinero, allocate } from "dinero.js";
     import { currency, formatCurrency } from "$lib/currency";
 
     export let expenses: Expense[] = [];
-    export let users: User[] = [];
-    export let user: User;
+    export let users: OtherUser[] = [];
+    export let user: OtherUser;
 
     function deleteExpense(id: string): MouseEventHandler<HTMLButtonElement> {
         return () => {

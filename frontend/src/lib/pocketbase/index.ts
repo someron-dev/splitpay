@@ -14,6 +14,13 @@ export type User = RecordModel & {
     avatar: string;
 };
 
+export type OtherUser = {
+    id: string;
+    username: string;
+    name: string;
+    avatar: string;
+};
+
 export type Expense = RecordModel & {
     amount: number;
     currency: string;
