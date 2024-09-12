@@ -13,3 +13,8 @@ Description is todo
 - [x] Amounts rendered in custom currencies
 - [x] Expenses can be shared between two users
 - [x] Sum of shared expenses is calculated
+
+### Iteration 3
+- [ ] Expenses are split between marked users
+- [ ] Access control for API operations
+- [ ] Settings GUI for account
