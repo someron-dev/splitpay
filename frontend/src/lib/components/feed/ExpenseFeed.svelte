@@ -1,42 +1,46 @@
 <ExpenseCreator createExpense={createExpense} user={user}/>
 
-<table>
-    <thead>
-    <tr>
-        <th>Subject</th>
-        <th>Amount</th>
-        <th>Created by</th>
-        <th>Created at</th>
-        <th />
-    </tr>
-    </thead>
-    <tbody>
-    {#each expenses as expense}
-        <tr>
-            <td>{expense.subject}</td>
-            <td>{formatCurrency(
-                allocate(dinero({ amount: expense.amount, currency: currency(expense.currency) }), [1, expense.sharedBy.length - 1])[0]
-            )}</td>
-            <td>{expense.creator === user.id ? user.name : "You"}</td>
-            <td><Time timestamp={expense.created} relative live /></td>
-            <td>
-                <div role="group">
+{#each expenses as expense}
+    <article>
+        <header class="flex">
+            <span class="left">
+                <b>{expense.subject.substring(0, 30)}</b>
+                {#if expense.subject.length > 30}
+                    <b data-tooltip={expense.subject}>...</b>
+                {/if}
+            </span>
+            <span class="right {'pico-color-' + (expense.creator === user.id ? 'red' : 'green')}">
+                {formatCurrency(
+                    allocate(dinero({ amount: expense.amount, currency: currency(expense.currency) }), [expense.sharedBy.length - 1, 1])[0]
+                )}
+            </span>
+        </header>
+
+        <ul>
+            {#each expense.sharedBy as sharedBy}
+                <li>
+                    {sharedBy === user.id ? user.name : "You"}
+                    {sharedBy === expense.creator ? " paid " : " owe(s) "}
+                    {formatCurrency(
+                        allocate(dinero({ amount: expense.amount, currency: currency(expense.currency) }), [1, expense.sharedBy.length - 1])[0]
+                    )}
+                </li>
+            {/each}
+        </ul>
+
+        <footer class="grid">
+            <div>
+                <details>
+                    <summary>
+                        {expense.creator === user.id ? user.name : "You"},
+                        <Time timestamp={expense.created} relative live />
+                    </summary>
                     <button class="pico-background-red" on:click={deleteExpense(expense.id)}>Delete</button>
-                </div>
-            </td>
-        </tr>
-    {/each}
-    </tbody>
-    <tfoot>
-    <tr>
-        <th>Subject</th>
-        <th>Amount</th>
-        <th>Created by</th>
-        <th>Created at</th>
-        <th />
-    </tr>
-    </tfoot>
-</table>
+                </details>
+            </div>
+        </footer>
+    </article>
+{/each}
 
 <script lang="ts">
     import type { MouseEventHandler } from "svelte/elements";
@@ -48,7 +52,6 @@
     import { currency, formatCurrency } from "$lib/currency";
 
     export let expenses: Expense[] = [];
-    export let users: OtherUser[] = [];
     export let user: OtherUser;
 
     function deleteExpense(id: string): MouseEventHandler<HTMLButtonElement> {
@@ -70,3 +73,18 @@
         newExpense.amount = 0;
     }
 </script>
+
+<style>
+    .left {
+        justify-self: left;
+    }
+
+    .right {
+        justify-self: right;
+    }
+
+    .flex {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
